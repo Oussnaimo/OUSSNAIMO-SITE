@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portail Chantier – Étudiant</title>
+  <link rel="stylesheet" href="PROJET.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Portail Chantier – Étudiant</div>
+    <div class="actions">
+      <button id="exportAllBtn">Exporter tout (JSON)</button>
+      <label class="importLabel">
+        Importer JSON
+        <input type="file" id="importFile" accept="application/json" />
+      </label>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="tabs">
+      <button class="tabBtn active" data-tab="reports">Rapports</button>
+      <button class="tabBtn active" data-tab="fleet">Parc Auto</button>
+      <button class="tabBtn active" data-tab="complaints">Réclamations</button>
+    </nav>
+
+    <!-- Rapports -->
+    <section id="tab-reports" class="tab active">
+      <h2>Rapports des Travaux</h2>
+
+      <form id="reportForm" class="grid">
+        <div class="field">
+          <label>Employé</label>
+          <input id="r-employee" placeholder="Nom complet" />
+        </div>
+        <div class="field">
+          <label>Projet</label>
+          <input id="r-project" placeholder="Ex: Chantier A" />
+        </div>
+        <div class="field">
+          <label>Date</label>
+          <input type="date" id="r-date" />
+        </div>
+        <div class="field">
+          <label>Heures</label>
+          <input type="number" id="r-hours" placeholder="8" />
+        </div>
+        <div class="field wide">
+          <label>Description</label>
+          <textarea id="r-desc" rows="2" placeholder="Tâches réalisées..."></textarea>
+        </div>
+        <div class="field">
+          <label>N° Reçu</label>
+          <input id="r-receipt" placeholder="RC-2025-001" />
+        </div>
+        <div class="field">
+          <label>Montant (MAD)</label>
+          <input type="number" id="r-amount" placeholder="450" />
+        </div>
+        <div class="field wide">
+          <label>Notes</label>
+          <textarea id="r-notes" rows="2" placeholder="Optionnel"></textarea>
+        </div>
+        <div class="field right">
+          <button type="submit">Ajouter</button>
+        </div>
+      </form>
+
+      <div class="tableWrap">
+        <div class="tableHeader">
+          <strong>Liste des rapports</strong>
+          <button id="downloadReports">Télécharger JSON</button>
+        </div>
+        <table id="reportsTable">
+          <thead>
+            <tr>
+              <th>Date</th><th>Employé</th><th>Projet</th><th>Description</th><th>Heures</th><th>Reçu</th><th>Montant</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Parc Auto -->
+    <section id="tab-fleet" class="tab ">
+      <h2>Gestion du Parc Auto</h2>
+
+      <form id="vehicleForm" class="grid">
+        <div class="field">
+          <label>Type</label>
+          <select id="v-kind">
+            <option>Voiture</option>
+            <option>Camion</option>  
+          </select>
+        </div>
+        <div class="field">
+          <label>Marque</label>
+          <input id="v-brand" placeholder="Renault" />
+        </div>
+        <div class="field">
+          <label>Modèle</label>
+          <input id="v-model" placeholder="Master" />
+        </div>
+        <div class="field">
+          <label>Plaque</label>
+          <input id="v-plate" placeholder="12345-A-6" />
+        </div>
+        <div class="field">
+          <label>Année</label>
+          <input type="number" id="v-year" placeholder="2021" />
+        </div>
+        <div class="field">
+          <label>Kilométrage</label>
+          <input type="number" id="v-km" placeholder="84500" />
+        </div>
+        <div class="field">
+          <label>Visite (prochaine)</label>
+          <input type="date" id="v-visite" />
+        </div>
+        <div class="field">
+          <label>Assurance (échéance)</label>
+          <input type="date" id="v-assurance" />
+        </div>
+        <div class="field">
+          <label>Statut</label>
+          <select id="v-status">
+            <option>Disponible</option>
+            <option>En mission</option>
+            <option>Hors service</option>
+          </select>
+        </div>
+        <div class="field right">
+          <button type="submit">Ajouter</button>
+        </div>
+      </form>
+
+      <div class="tableWrap">
+        <div class="tableHeader">
+          <strong>Liste des véhicules</strong>
+          <button id="downloadVehicles">Télécharger JSON</button>
+        </div>
+        <table id="vehiclesTable">
+          <thead>
+            <tr>
+              <th>Plaque</th><th>Type</th><th>Marque/Modèle</th><th>Année</th><th>Km</th><th>Visite</th><th>Assurance</th><th>Statut</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Réclamations -->
+    <section id="tab-complaints" class="tab">
+      <h2>Réclamations Mécaniques/Techniques</h2>
+
+      <form id="complaintForm" class="grid">
+        <div class="field">
+          <label>Plaque</label>
+          <select id="c-plate"></select>
+        </div>
+        <div class="field">
+          <label>Type</label>
+          <select id="c-kind">
+            <option>Technique</option>
+            <option>Mécanique</option>
+            <option>Électrique</option>
+            <option>Carrosserie</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Urgence</label>
+          <select id="c-urgency">
+            <option>Moyenne</option>
+            <option>Faible</option>
+            <option>Haute</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Date</label>
+          <input type="date" id="c-date" />
+        </div>
+        <div class="field">
+          <label>Déclarant</label>
+          <input id="c-reporter" placeholder="Nom employé" />
+        </div>
+        <div class="field wide">
+          <label>Description</label>
+          <textarea id="c-desc" rows="2" placeholder="Décrivez le problème..."></textarea>
+        </div>
+        <div class="field right">
+          <button type="submit">Soumettre</button>
+        </div>
+      </form>
+
+      <div class="tableWrap">
+        <div class="tableHeader">
+          <strong>Liste des réclamations</strong>
+          <button id="downloadComplaints">Télécharger JSON</button>
+        </div>
+        <table id="complaintsTable">
+          <thead>
+            <tr>
+              <th>Plaque</th><th>Type</th><th>Urgence</th><th>Date</th><th>Déclarant</th><th>Description</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">Projet étudiant (1ère année).</footer>
+
+  <script src="PROJET.js"></script>
+</body>
+</html>

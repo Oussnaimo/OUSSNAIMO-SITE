@@ -1,0 +1,30 @@
+:root{--bg:#f7f7f7;--fg:#111;--muted:#6b7280;--card:#ffffff;--border:#e5e7eb;--primary:#2563eb;}
+*{box-sizing:border-box} body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--fg)}
+.topbar{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.9);backdrop-filter:saturate(180%) blur(6px)}
+.brand{font-weight:700}
+.actions{display:flex;gap:8px;align-items:center}
+.actions button,.actions input[type=file]{cursor:pointer}
+.importLabel{display:inline-flex;gap:6px;align-items:center;padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:#fff;font-size:14px}
+#importFile{display:none}
+.container{max-width:1100px;margin:20px auto;padding:0 12px}
+.tabs{display:flex;gap:8px;margin-bottom:12px}
+.tabBtn{padding:8px 12px;border:1px solid var(--border);background:#0e0b0b;border-radius:8px;cursor:pointer}
+.tabBtn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.tab{display:none}
+.tab.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:var(--card);padding:12px;border:1px solid var(--border);border-radius:12px;margin-bottom:12px}
+.field{display:flex;flex-direction:column;gap:4px}
+.field.wide{grid-column:span 4}
+.field.right{grid-column:span 4;display:flex;align-items:center;justify-content:flex-end}
+label{font-size:12px;color:var(--muted)}
+input,select,textarea,button{padding:8px;border:1px solid var(--border);border-radius:8px;font:inherit}
+button{background:var(--primary);color:#fff;border-color:var(--primary)}
+.tableWrap{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:auto}
+.tableHeader{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:8px;text-align:left;border-top:1px solid var(--border);vertical-align:top}
+th{background:#fafafa}
+.badge{padding:2px 6px;border-radius:999px;border:1px solid var(--border);font-size:12px}
+.badge.red{background:#fee2e2}
+.badge.green{background:#dcfce7}
+.foot{text-align:center;color:var(--muted);font-size:12px;padding:22px}
